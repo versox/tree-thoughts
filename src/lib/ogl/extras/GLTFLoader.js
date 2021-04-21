@@ -572,8 +572,8 @@ export class GLTFLoader {
 
     static parseNodes(gl, desc, meshes, skins) {
         if (!desc.nodes) return null;
-        const nodes = desc.nodes.map(
-            ({
+        console.log(desc);
+        const nodes = desc.nodes.reduce((nodes, {
                 camera, // optional
                 children, // optional
                 skin: skinIndex, // optional
@@ -587,6 +587,8 @@ export class GLTFLoader {
                 extensions, // optional
                 extras, // optional
             }) => {
+                if (name === 'camera' || name === 'camera_Orientation') return nodes;
+
                 const node = new Transform();
                 if (name) node.name = name;
 
@@ -644,9 +646,9 @@ export class GLTFLoader {
                     node.matrix.identity();
                     node.decompose();
                 }
-
-                return node;
-            }
+                nodes.push(node);
+                return nodes;
+            }, []
         );
 
         desc.nodes.forEach(({ children = [] }, i) => {
