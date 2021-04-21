@@ -1,3 +1,6 @@
 # tree-thoughts
 
-Place trees in this peaceful mountain sanctuary, and grow your thoughts with others.
+Place trees thoughts in this peaceful mountain sanctuary,
+or grow existing tree thoughts.
+
+An exploration of 3D web interactions and reflection techniques.
